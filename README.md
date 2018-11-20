@@ -64,3 +64,13 @@ We provide saliency maps predicted by SAM-VGG and SAM-ResNet for three standard 
 For more datails about our research please visit our [page](http://imagelab.ing.unimore.it/imagelab/researchActivity.asp?idActivity=30).
 
 If you have any general doubt about our work, please use the [public issues section](https://github.com/marcellacornia/sam/issues) on this github repo. Alternatively, drop us an e-mail at <marcella.cornia@unimore.it> or <lorenzo.baraldi@unimore.it>.
+
+
+### Install details
+check theano version
+```
+python
+import theano 
+theano.__version__
+```
+
