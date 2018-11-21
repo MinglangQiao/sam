@@ -8,6 +8,7 @@ import numpy as np
 from config import *
 from utilities import preprocess_images, preprocess_maps, preprocess_fixmaps, postprocess_predictions
 from models import sam_vgg, sam_resnet, kl_divergence, correlation_coefficient, nss
+import time
 
 
 def generator(b_s, phase_gen='train'):
@@ -86,7 +87,9 @@ if __name__ == '__main__':
 
         elif phase == "test":
             # Output Folder Path
-            output_folder = 'predictions/'
+            # output_folder = 'predictions/'
+
+            output_folder = '/home/ml/sam/predictions/sam_result_1120_vgg/'
 
             if len(sys.argv) < 2:
                 raise SyntaxError
@@ -105,11 +108,13 @@ if __name__ == '__main__':
                 m.load_weights('weights/sam-vgg_salicon_weights.pkl')
             elif version == 1:
                 print("Loading SAM-ResNet weights")
-                m.load_weights('weights/sam-resnet_salicon_weights.pkl')
+                m.load_weights('weights/sam-resnet_salicon2017_weights.pkl') # sam-resnet_salicon2017_weights.pkl   sam-resnet_salicon_weights.pkl
 
             print("Predicting saliency maps for " + imgs_test_path)
+            start_time = time.time()
             predictions = m.predict_generator(generator_test(b_s=b_s, imgs_test_path=imgs_test_path), nb_imgs_test)[0]
-
+            all_time = time.time()-start_time
+            print('>>>>>>>> time_cost: {:.3f} s, each image: {:.3f} s'.format(all_time, all_time/len(file_names)))
 
             for pred, name in zip(predictions, file_names):
                 original_image = cv2.imread(imgs_test_path + name, 0)

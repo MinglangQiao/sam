@@ -1,4 +1,6 @@
 from __future__ import division
+import os
+os.environ['THEANO_FLAGS'] = "device=cuda,force_device=True,floatX=float32"
 import keras.backend as K
 import theano.tensor as T
 from keras.layers import Layer, InputSpec

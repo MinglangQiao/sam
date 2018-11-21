@@ -1,4 +1,7 @@
 from __future__ import division
+import os
+# os.environ['THEANO_FLAGS'] = "device=cuda,force_device=True,floatX=float32"
+# import theano
 from keras.layers import Lambda, merge
 from keras.layers.convolutional import Convolution2D, AtrousConvolution2D
 import keras.backend as K

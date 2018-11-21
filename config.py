@@ -2,7 +2,7 @@
 # MODEL PARAMETERS														#
 #########################################################################
 # version (0 for SAM-VGG and 1 for SAM-ResNet)
-version = 1
+version = 0
 # batch size
 b_s = 1
 # number of rows of input images
